@@ -187,6 +187,6 @@
         %>
     </div>
 </section>
-<script></script>
+<script src="JS/Sidebar.js"></script>
 </body>
 </html>

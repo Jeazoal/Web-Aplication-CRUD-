@@ -13,8 +13,8 @@
 <head>
     <meta charset="UTF-8">
     <title> Coffee Souls </title>
-    <link rel="stylesheet" href="Styles/Style-Sidebar.css">
-    <link rel="stylesheet" href="Styles/Dashboard.css">
+    <link rel="stylesheet" href="CSS/Style-Sidebar.css">
+    <link rel="stylesheet" href="CSS/Dashboard.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
     <!-- Boxiocns CDN Link -->
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
@@ -190,7 +190,7 @@
         </script>
     </div>
 </section>
-<script src="Scripts/Sidebar.js"></script>
+<script src="JS/Sidebar.js"></script>
 </body>
 </html>
 

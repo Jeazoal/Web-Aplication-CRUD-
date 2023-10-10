@@ -72,7 +72,12 @@
         <dependency>
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
-            <version>2.8.8</version> <!-- Puedes verificar la última versión en el repositorio de Maven -->
+            <version>2.8.8</version>
+        </dependency>
+        <dependency>
+            <groupId>net.sf.jasperreports</groupId>
+            <artifactId>jasperreports</artifactId>
+            <version>6.17.0</version>
         </dependency>
     </dependencies>
 

@@ -6,8 +6,8 @@
 <head>
     <meta charset="UTF-8">
     <title> Coffee Souls </title>
-    <link rel="stylesheet" href="Styles/Style-Sidebar.css">
-    <link rel="stylesheet" href="Styles/Style-Form.css">
+    <link rel="stylesheet" href="CSS/Style-Sidebar.css">
+    <link rel="stylesheet" href="CSS/Style-Form.css">
     <!-- Boxiocns CDN Link -->
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -186,6 +186,6 @@
         </table>
     </div>
 </section>
-<script src="Scripts/Sidebar.js"></script>
+<script src="JS/Sidebar.js"></script>
 </body>
 </html>
