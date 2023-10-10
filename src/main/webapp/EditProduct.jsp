@@ -14,7 +14,7 @@
     <title> Coffee Souls </title>
     <!--CSS para diseño de paginas-->
     <link rel="stylesheet" href="Styles/Style-Sidebar.css">
-    <link rel="stylesheet" href="Styles/Style-Edit.css">
+    <link rel="stylesheet" href="Styles/Style-FomrEdit.css">
     <!-- Boxiocns CDN Link -->
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -36,12 +36,12 @@
             </ul>
         </li>
         <li>
-            <a href="#">
+            <a href="Dashboard.jsp">
                 <i class='bx bx-grid-alt' ></i>
                 <span class="link_name">Dashboard</span>
             </a>
             <ul class="sub-menu blank">
-                <li><a class="link_name" href="#">Dashboard</a></li>
+                <li><a class="link_name" href="Dashboard.jsp">Dashboard</a></li>
             </ul>
         </li>
         <li>
@@ -55,7 +55,6 @@
             <ul class="sub-menu">
                 <li><a class="link_name" href="#">Products</a></li>
                 <li><a href="ManageProducto.jsp">Manage Products</a></li>
-                <li><a href="#">Search Products</a></li>
                 <li><a href="#">Report for Products</a></li>
             </ul>
         </li>
@@ -70,7 +69,6 @@
             <ul class="sub-menu">
                 <li><a class="link_name" href="#">Inventory</a></li>
                 <li><a href="#">Manage Inventory</a></li>
-                <li><a href="#">Search Inventory</a></li>
                 <li><a href="#">Report for Inventory</a></li>
             </ul>
         </li>
@@ -85,7 +83,6 @@
             <ul class="sub-menu">
                 <li><a class="link_name" href="#">Category</a></li>
                 <li><a href="#">Manage Category</a></li>
-                <li><a href="#">Search Category</a></li>
                 <li><a href="#">Report for Category</a></li>
             </ul>
         </li>
@@ -100,7 +97,6 @@
             <ul class="sub-menu">
                 <li><a class="link_name" href="#">Sales</a></li>
                 <li><a href="#">Manage Sales</a></li>
-                <li><a href="#">Search Sales</a></li>
                 <li><a href="#">Report for Sales</a></li>
             </ul>
         </li>
@@ -114,8 +110,7 @@
             </div>
             <ul class="sub-menu">
                 <li><a class="link_name" href="#">Employees</a></li>
-                <li><a href="#">Manage Employees</a></li>
-                <li><a href="#">Search Employees</a></li>
+                <li><a href="ManageTrabajador.jsp">Manage Employees</a></li>
                 <li><a href="#">Report for Employees</a></li>
             </ul>
         </li>

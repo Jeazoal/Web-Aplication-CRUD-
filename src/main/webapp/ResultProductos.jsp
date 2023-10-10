@@ -7,6 +7,7 @@
     <meta charset="UTF-8">
     <title> Coffee Souls </title>
     <link rel="stylesheet" href="Styles/Style-Sidebar.css">
+    <link rel="stylesheet" href="Styles/Style-Form.css">
     <!-- Boxiocns CDN Link -->
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -136,7 +137,49 @@
 <section class="home-section">
     <div class="home-content">
         <i class='bx bx-menu' ></i>
-        <span class="text">Home</span>
+        <span class="text">RESULTS</span>
+    </div>
+    <div class="section-table">
+        <table>
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Precio</th>
+                <th>Acción De Editar</th>
+                <th>Acción De Eliminar</th>
+            </tr>
+            </thead>
+            <tbody>
+            <%
+                // Accede a la lista de productos desde el objeto de solicitud
+                List<Producto> productosEncontrados = (List<Producto>) request.getAttribute("productosEncontrados");
+
+                // Itera a través de la lista y muestra los resultados
+                for (Producto producto : productosEncontrados) {
+            %>
+            <tr>
+                <td><%= producto.getId() %></td>
+                <td><%= producto.getNombre() %></td>
+                <td><%= producto.getPrecio() %></td>
+                <td>
+                    <form method="post" action="EditProduct.jsp">
+                        <input type="hidden" name="id" value="<%= producto.getId() %>">
+                        <input class="edit-button" type="submit" value="Editar">
+                    </form>
+                </td>
+                <td>
+                    <form method="post" action="producto?action=eliminar">
+                        <input type="hidden" name="id" value="<%= producto.getId() %>">
+                        <input class="delete-button" type="submit" value="Eliminar">
+                    </form>
+                </td>
+            </tr>
+            <%
+                }
+            %>
+            </tbody>
+        </table>
     </div>
 </section>
 <script src="Scripts/Sidebar.js"></script>

@@ -81,6 +81,38 @@ public class ProductoDAO {
         return productosEncontrados;
     }
 
+    public List<Trabajador> buscarTrabajadores(String criterio, String tipoBusqueda) {
+        List<Trabajador> trabajadoresEncontrados = new ArrayList<>();
+
+        try {
+            String sql = "{CALL BuscarTrabajadores(?, ?)}";
+
+            // Preparar la llamada al procedimiento almacenado
+            CallableStatement statement = connection.prepareCall(sql);
+            statement.setString(1, criterio);
+            statement.setString(2, tipoBusqueda);
+
+            // Ejecutar el procedimiento almacenado
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                int idEmp = resultSet.getInt("id_emp");
+                String nomEmp = resultSet.getString("nom_emp");
+                String apeEmp = resultSet.getString("ape_emp");
+                int edadEmp = resultSet.getInt("edad_emp");
+                String dniEmp = resultSet.getString("dni_emp");
+                String email = resultSet.getString("email");
+
+                Trabajador trabajador = new Trabajador(idEmp, nomEmp, apeEmp, edadEmp, dniEmp, email);
+                trabajadoresEncontrados.add(trabajador);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return trabajadoresEncontrados;
+    }
+
     public void agregarProducto(String nombre, double precio) {
         try {
             // Llamar al procedimiento almacenado

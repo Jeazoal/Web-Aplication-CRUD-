@@ -65,8 +65,7 @@ public class ProductoServlet extends HttpServlet {
             // Guardar la lista de productos en el objeto de solicitud para mostrar en la página de resultados
             request.setAttribute("productosEncontrados", productosEncontrados);
 
-            // Redirigir a la página de resultados de búsqueda (por ejemplo, "ResultadosBusqueda.jsp")
-            request.getRequestDispatcher("ResultadosBusqueda.jsp").forward(request, response);
+            request.getRequestDispatcher("ResultProductos.jsp").forward(request, response);
         }else if ("eliminarSeleccionados".equals(action)) {
             String[] idsSeleccionados = request.getParameterValues("productosSeleccionados");
 

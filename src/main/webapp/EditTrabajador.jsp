@@ -1,12 +1,20 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: Jeazoal
+  Date: 10/10/2023
+  Time: 02:32
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="com.coffeesouls.Models.Producto, com.coffeesouls.Models.ProductoDAO" %>
-<%@ page import="java.util.List" %>
+<%@ page import="com.coffeesouls.Models.Trabajador, com.coffeesouls.Models.TrabajadorDAO" %>
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="es" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <title> Coffee Souls </title>
+    <!--CSS para diseño de paginas-->
     <link rel="stylesheet" href="Styles/Style-Sidebar.css">
+    <link rel="stylesheet" href="Styles/Style-FomrEdit.css">
     <!-- Boxiocns CDN Link -->
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -136,9 +144,49 @@
 <section class="home-section">
     <div class="home-content">
         <i class='bx bx-menu' ></i>
-        <span class="text">Home</span>
+        <span class="text">Edit Worker</span>
+    </div>
+    <div>
+        <h2>Edit Worker</h2>
+        <%
+            // Obtener el ID del trabajador desde la solicitud
+            int idTrabajador = Integer.parseInt(request.getParameter("idEmp"));
+
+            // Crear una instancia de TrabajadorDAO para obtener los detalles del trabajador
+            TrabajadorDAO trabajadorDAO = new TrabajadorDAO();
+            Trabajador trabajador = trabajadorDAO.obtenerTrabajadorPorID(idTrabajador);
+
+            // Verificar si el trabajador existe antes de mostrar los campos de edición
+            if (trabajador != null) {
+        %>
+        <form method="post" action="trabajador?action=editar">
+            <input type="hidden" name="idEmp" value="<%= trabajador.getIdEmp() %>">
+
+
+            <label for="nomEmp">Nombre del Trabajador:</label>
+            <input type="text" id="nomEmp" name="nuevoNomEmp" value="<%= trabajador.getNomEmp() %>" required><br>
+
+            <label for="apeEmp">Apellido del Trabajador:</label>
+            <input type="text" id="apeEmp" name="nuevoApeEmp" value="<%= trabajador.getApeEmp() %>" required><br>
+
+            <label for="edadEmp">Edad del Trabajador:</label>
+            <input type="text" id="edadEmp" name="nuevaEdadEmp" value="<%= trabajador.getEdadEmp() %>" required><br>
+
+            <label for="dniEmp">DNI del Trabajador:</label>
+            <input type="text" id="dniEmp" name="nuevoDniEmp" value="<%= trabajador.getDniEmp() %>" required><br>
+
+            <label for="email">Email del Trabajador:</label>
+            <input type="email" id="email" name="nuevoEmail" value="<%= trabajador.getEmail() %>" required><br>
+
+            <input type="submit" value="Guardar Cambios">
+        </form>
+        <%
+            } else {
+                out.println("El trabajador no existe o no se pudo cargar.");
+            }
+        %>
     </div>
 </section>
-<script src="Scripts/Sidebar.js"></script>
+<script></script>
 </body>
 </html>

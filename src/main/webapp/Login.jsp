@@ -25,8 +25,7 @@
 
         <ul class="nav_items">
             <li class="nav_item">
-                <a href="#" class="nav_link">Home</a>
-                <a href="#" class="nav_link">About us</a>
+                <a href="Login.jsp" class="nav_link">Home</a>
                 <a href="#" class="nav_link">Contact</a>
             </li>
         </ul>

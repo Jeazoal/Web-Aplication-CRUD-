@@ -14,7 +14,6 @@
     <meta charset="UTF-8">
     <title> Coffee Souls </title>
     <link rel="stylesheet" href="Styles/Style-Sidebar.css">
-    <link rel="stylesheet" href="Styles/Style-Product.css">
     <link rel="stylesheet" href="Styles/Dashboard.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
     <!-- Boxiocns CDN Link -->
@@ -57,7 +56,6 @@
             <ul class="sub-menu">
                 <li><a class="link_name" href="#">Products</a></li>
                 <li><a href="ManageProducto.jsp">Manage Products</a></li>
-                <li><a href="#">Search Products</a></li>
                 <li><a href="#">Report for Products</a></li>
             </ul>
         </li>
@@ -72,7 +70,6 @@
             <ul class="sub-menu">
                 <li><a class="link_name" href="#">Inventory</a></li>
                 <li><a href="#">Manage Inventory</a></li>
-                <li><a href="#">Search Inventory</a></li>
                 <li><a href="#">Report for Inventory</a></li>
             </ul>
         </li>
@@ -87,7 +84,6 @@
             <ul class="sub-menu">
                 <li><a class="link_name" href="#">Category</a></li>
                 <li><a href="#">Manage Category</a></li>
-                <li><a href="#">Search Category</a></li>
                 <li><a href="#">Report for Category</a></li>
             </ul>
         </li>
@@ -102,7 +98,6 @@
             <ul class="sub-menu">
                 <li><a class="link_name" href="#">Sales</a></li>
                 <li><a href="#">Manage Sales</a></li>
-                <li><a href="#">Search Sales</a></li>
                 <li><a href="#">Report for Sales</a></li>
             </ul>
         </li>
@@ -116,8 +111,7 @@
             </div>
             <ul class="sub-menu">
                 <li><a class="link_name" href="#">Employees</a></li>
-                <li><a href="#">Manage Employees</a></li>
-                <li><a href="#">Search Employees</a></li>
+                <li><a href="ManageTrabajador.jsp">Manage Employees</a></li>
                 <li><a href="#">Report for Employees</a></li>
             </ul>
         </li>

@@ -1,20 +1,20 @@
 <%--
   Created by IntelliJ IDEA.
   User: Jeazoal
-  Date: 9/10/2023
-  Time: 19:15
+  Date: 10/10/2023
+  Time: 02:24
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="com.coffeesouls.Models.Producto, com.coffeesouls.Models.ProductoDAO" %>
+<%@ page import="com.coffeesouls.Models.Trabajador, com.coffeesouls.Models.TrabajadorDAO" %>
 <%@ page import="java.util.List" %>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <title> Coffee Souls </title>
-    <link rel="stylesheet" href="Styles/Style-Sidebar.css">
     <link rel="stylesheet" href="Styles/Style-Form.css">
+    <link rel="stylesheet" href="Styles/Style-Sidebar.css">
     <!-- Boxiocns CDN Link -->
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -144,93 +144,109 @@
 <section class="home-section">
     <div class="home-content">
         <i class='bx bx-menu' ></i>
-        <span class="text">Manage Products</span>
+        <span class="text">Manage Employees</span>
     </div>
     <div class="create">
         <h1>Crear</h1>
-        <form method="post" action="producto?action=agregar">
+        <form method="post" action="trabajador?action=agregar">
             <div class="values">
-                <label for="nombre">Nombre del Producto:</label>
-                <input class="input_create" type="text" id="nombre" name="nombre" required placeholder="Ingrese Nombre Del Producto..."><br>
+                <label for="nomEmp">Nombre del Trabajador:</label>
+                <input class="input_create" type="text" id="nomEmp" name="nomEmp" required placeholder="Ingrese Nombre del Trabajador..."><br>
 
-                <label for="precio">Precio:</label>
-                <input class="input_create" type="text" id="precio" name="precio" required placeholder="Ingrese Precio Del Producto..."><br>
+                <label for="apeEmp">Apellido del Trabajador:</label>
+                <input class="input_create" type="text" id="apeEmp" name="apeEmp" required placeholder="Ingrese Apellido del Trabajador..."><br>
+
+                <label for="edadEmp">Edad del Trabajador:</label>
+                <input class="input_create" type="text" id="edadEmp" name="edadEmp" required placeholder="Ingrese Edad del Trabajador..."><br>
+
+                <label for="dniEmp">DNI del Trabajador:</label>
+                <input class="input_create" type="text" id="dniEmp" name="dniEmp" required placeholder="Ingrese DNI del Trabajador..."><br>
+
+                <label for="email">Email del Trabajador:</label>
+                <input class="input_create" type="text" id="email" name="email" required placeholder="Ingrese Email del Trabajador..."><br>
             </div>
             <div class="execute">
-                <input class="BotonAgregar" type="submit" value="Agregar Producto" >
+                <input class="BotonAgregar" type="submit" value="Agregar Trabajador">
             </div>
         </form>
     </div>
 
-    <h1 class="titulo-two">Lista de Productos</h1>
-
+    <h1 class="titulo-two">Lista de Trabajadores</h1>
         <div class="section-table">
             <div class="table">
-                <table id="productTable">
+                <table id="">
                     <thead>
-                    <tr>
-                        <th colspan="5" class="top-table">
-                            <form class="form-search" action="producto?action=buscar" method="post">
-                                <div class="content-selector">
-                                    <label class="selector-option" for="criterio_busqueda">Filter Search:</label>
-                                    <select class="selector" name="tipo_busqueda" required>
-                                        <option value="nombre">
-                                            Nombre
-                                        </option>
-                                        <option value="id">Por ID</option>
-                                    </select>
-                                </div>
-                                <div class="content-label">
-                                    <input type="hidden" name="action" value="buscar">
-                                    <label class="search-title" for="criterio_busqueda">Search:</label>
-                                    <input class="input_search" type="text" id="criterio_busqueda" name="criterio_busqueda" placeholder="Search ..." required>
-                                    <i class='bx bx-search-alt-2'></i>
-                                </div>
-                            </form>
-                        </th>
-                    </tr>
+                        <tr>
+                            <th colspan="8" class="top-table">
+                                <form class="form-search" action="trabajador?action=buscar" method="post">
+                                    <div class="content-selector">
+                                        <label class="selector-option" for="criterio_busqueda">Filter Search:</label>
+                                        <select class="selector" name="tipo_busqueda" required>
+                                            <option value="id_emp">
+                                                Por ID
+                                            </option>
+                                            <option value="nom_emp">Por Nombre</option>
+                                            <option value="ape_emp">Por Apellido</option>
+                                            <option value="dni_emp">Por DNI</option>
+                                        </select>
+                                    </div>
+                                    <div class="content-label">
+                                        <input type="hidden" name="action" value="buscar">
+                                        <label class="search-title" for="criterio_busqueda">Search:</label>
+                                        <input class="input_search" type="text" id="criterio_busqueda" name="criterio_busqueda" placeholder="Buscar ..." required>
+                                        <i class='bx bx-search-alt-2'></i>
+                                    </div>
+                                </form>
+                            </th>
+                        </tr>
                     <tr>
                         <th>ID</th>
                         <th>Nombre</th>
-                        <th>Precio</th>
-                        <th>Accion De Editar</th>
-                        <th>Accion De Eliminar</th>
+                        <th>Apellido</th>
+                        <th>Edad</th>
+                        <th>DNI</th>
+                        <th>Email</th>
+                        <th>Acción De Editar</th>
+                        <th>Acción De Eliminar</th>
                     </tr>
                     </thead>
                     <tbody>
                     <%
-                        ProductoDAO productoDAO = new ProductoDAO();
-                        List<Producto> productos = productoDAO.obtenerProductos();
+                        TrabajadorDAO trabajadorDAO = new TrabajadorDAO();
+                        List<Trabajador> trabajadores = trabajadorDAO.obtenerTrabajadores();
 
                         int currentPage = 1;
-                        int productsPerPage = 6;
-                        int totalProducts = productos.size();
-                        int totalPages = (int) Math.ceil((double) totalProducts / productsPerPage);
+                        int trabajadorPerPage = 6;
+                        int totalTrabajadores = trabajadores.size();
+                        int totalPages = (int) Math.ceil((double) totalTrabajadores / trabajadorPerPage);
 
                         if (request.getParameter("page") != null) {
                             currentPage = Integer.parseInt(request.getParameter("page"));
                         }
 
-                        int startIndex = (currentPage - 1) * productsPerPage;
-                        int endIndex = Math.min(startIndex + productsPerPage, totalProducts);
+                        int startIndex = (currentPage - 1) * trabajadorPerPage;
+                        int endIndex = Math.min(startIndex + trabajadorPerPage, totalTrabajadores);
 
-                        List<Producto> productosPagina = productos.subList(startIndex, endIndex);
+                        List<Trabajador> trabajadorPagina = trabajadores.subList(startIndex, endIndex);
 
-                        for (Producto producto : productosPagina) {
+                        for (Trabajador trabajador : trabajadorPagina) {
                     %>
                     <tr>
-                        <td><%= producto.getId() %></td>
-                        <td><%= producto.getNombre() %></td>
-                        <td><%= producto.getPrecio() %></td>
+                        <td><%= trabajador.getIdEmp() %></td>
+                        <td><%= trabajador.getNomEmp() %></td>
+                        <td><%= trabajador.getApeEmp() %></td>
+                        <td><%= trabajador.getEdadEmp() %></td>
+                        <td><%= trabajador.getDniEmp() %></td>
+                        <td><%= trabajador.getEmail() %></td>
                         <td>
-                            <form method="post" action="EditProduct.jsp">
-                                <input type="hidden" name="id" value="<%= producto.getId() %>">
+                            <form method="post" action="EditTrabajador.jsp">
+                                <input type="hidden" name="idEmp" value="<%= trabajador.getIdEmp() %>">
                                 <input class="edit-button" type="submit" value="Editar">
                             </form>
                         </td>
                         <td>
-                            <form method="post" action="producto?action=eliminar">
-                                <input type="hidden" name="id" value="<%= producto.getId() %>">
+                            <form method="post" action="trabajador?action=eliminar">
+                                <input type="hidden" name="idEmp" value="<%= trabajador.getIdEmp() %>">
                                 <input class="delete-button" type="submit" value="Eliminar">
                             </form>
                         </td>
@@ -239,7 +255,7 @@
                         }
                     %>
                     <tr>
-                        <td class="bottom-table-i" colspan="5">
+                        <td class="bottom-table-i" colspan="8">
                             <div class="pagination">
                                 <ul>
                                     <%

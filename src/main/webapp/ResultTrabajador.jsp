@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="com.coffeesouls.Models.Producto, com.coffeesouls.Models.ProductoDAO" %>
+<%@ page import="com.coffeesouls.Models.Trabajador, com.coffeesouls.Models.TrabajadorDAO" %>
 <%@ page import="java.util.List" %>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -7,6 +7,7 @@
     <meta charset="UTF-8">
     <title> Coffee Souls </title>
     <link rel="stylesheet" href="Styles/Style-Sidebar.css">
+    <link rel="stylesheet" href="Styles/Style-Form.css">
     <!-- Boxiocns CDN Link -->
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -136,7 +137,53 @@
 <section class="home-section">
     <div class="home-content">
         <i class='bx bx-menu' ></i>
-        <span class="text">Home</span>
+        <span class="text">RESULTS</span>
+    </div>
+    <div class="section-table">
+
+        <table>
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Edad</th>
+                <th>DNI</th>
+                <th>Email</th>
+                <th>Acción De Editar</th>
+                <th>Acción De Eliminar</th>
+            </tr>
+            </thead>
+            <tbody>
+            <%
+                List<Trabajador> trabajadoresEncontrados = (List<Trabajador>) request.getAttribute("trabajadoresEncontrados");
+                for (Trabajador trabajador : trabajadoresEncontrados) {
+            %>
+            <tr>
+                <td><%= trabajador.getIdEmp() %></td>
+                <td><%= trabajador.getNomEmp() %></td>
+                <td><%= trabajador.getApeEmp() %></td>
+                <td><%= trabajador.getEdadEmp() %></td>
+                <td><%= trabajador.getDniEmp() %></td>
+                <td><%= trabajador.getEmail() %></td>
+                <td>
+                    <form method="post" action="EditTrabajador.jsp">
+                        <input type="hidden" name="idEmp" value="<%= trabajador.getIdEmp() %>">
+                        <input class="edit-button" type="submit" value="Editar">
+                    </form>
+                </td>
+                <td>
+                    <form method="post" action="trabajador?action=eliminar">
+                        <input type="hidden" name="idEmp" value="<%= trabajador.getIdEmp() %>">
+                        <input class="delete-button" type="submit" value="Eliminar">
+                    </form>
+                </td>
+            </tr>
+            <%
+                }
+            %>
+            </tbody>
+        </table>
     </div>
 </section>
 <script src="Scripts/Sidebar.js"></script>
