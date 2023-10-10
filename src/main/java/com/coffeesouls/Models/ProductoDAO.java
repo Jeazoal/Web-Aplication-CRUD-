@@ -4,7 +4,6 @@ import com.coffeesouls.Connections.Conexion;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-
 import java.sql.PreparedStatement;
 
 public class ProductoDAO {
@@ -167,6 +166,29 @@ public class ProductoDAO {
         } catch (SQLException e) {
             System.err.println("Error al eliminar los productos seleccionados: " + e.getMessage());
         }
+    }
+
+    public List<Producto> obtenerTresProductosMasCaros() {
+        List<Producto> productosCaros = new ArrayList<>();
+
+        try {
+            String sql = "SELECT TOP 3 * FROM productos ORDER BY precio DESC";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                int id = resultSet.getInt("id");
+                String nombre = resultSet.getString("nombre");
+                double precio = resultSet.getDouble("precio");
+
+                Producto producto = new Producto(id, nombre, precio);
+                productosCaros.add(producto);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return productosCaros;
     }
 
 

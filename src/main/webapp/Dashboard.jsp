@@ -1,3 +1,10 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: Jeazoal
+  Date: 10/10/2023
+  Time: 00:21
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="com.coffeesouls.Models.Producto, com.coffeesouls.Models.ProductoDAO" %>
 <%@ page import="java.util.List" %>
@@ -8,6 +15,8 @@
     <title> Coffee Souls </title>
     <link rel="stylesheet" href="Styles/Style-Sidebar.css">
     <link rel="stylesheet" href="Styles/Style-Product.css">
+    <link rel="stylesheet" href="Styles/Dashboard.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
     <!-- Boxiocns CDN Link -->
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -34,7 +43,7 @@
                 <span class="link_name">Dashboard</span>
             </a>
             <ul class="sub-menu blank">
-                <li><a class="link_name" href="mostrarGrafico.jsp">Dashboard</a></li>
+                <li><a class="link_name" href="Dashboard.jsp">Dashboard</a></li>
             </ul>
         </li>
         <li>
@@ -142,9 +151,52 @@
 <section class="home-section">
     <div class="home-content">
         <i class='bx bx-menu' ></i>
-        <span class="text">Home</span>
+        <span class="text">Dashboard</span>
+    </div>
+    <div class="est-ptroductos">
+        <canvas class="Productos" id="myChart"></canvas>
+        <script>
+            var ctx = document.getElementById('myChart').getContext('2d');
+            var etiquetas = []; // Aquí almacenaremos los nombres de los productos
+            var precios = []; // Aquí almacenaremos los precios de los productos
+
+            // Obtener datos de la base de datos utilizando Java
+            <%
+                List<Producto> productos = new ProductoDAO().obtenerTresProductosMasCaros(); // Cambia esto según tu lógica de obtención de datos
+                for (Producto producto : productos) {
+            %>
+            etiquetas.push('<%= producto.getNombre() %>'); // Agregar nombre del producto
+            precios.push(<%= producto.getPrecio() %>); // Agregar precio del producto
+            <%
+                }
+            %>
+
+            var data = {
+                labels: etiquetas, // Etiquetas de los productos
+                datasets: [{
+                    label: 'Precio',
+                    data: precios, // Precios de los productos
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            };
+
+            var myChart = new Chart(ctx, {
+                type: 'bar', // Tipo de gráfico
+                data: data,
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        </script>
     </div>
 </section>
 <script src="Scripts/Sidebar.js"></script>
 </body>
 </html>
+

@@ -20,5 +20,13 @@
         <servlet-name>ProductoServlet</servlet-name>
         <url-pattern>/producto</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>TresProductosMasCarosServlet</servlet-name>
+        <servlet-class>com.coffeesouls.Controllers.TresProductosMasCarosServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>TresProductosMasCarosServlet</servlet-name>
+        <url-pattern>/obtenermayoresproductos</url-pattern>
+    </servlet-mapping>
 
 </web-app>
