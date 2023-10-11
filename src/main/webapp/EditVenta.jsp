@@ -1,18 +1,18 @@
 <%--
   Created by IntelliJ IDEA.
   User: Jeazoal
-  Date: 10/10/2023
-  Time: 02:32
+  Date: 11/10/2023
+  Time: 18:24
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="com.coffeesouls.Models.Trabajador, com.coffeesouls.Models.TrabajadorDAO" %>
+<%@ page import="com.coffeesouls.Models.Venta, com.coffeesouls.Models.VentaDAO" %>
 <!DOCTYPE html>
 <html lang="es" dir="ltr">
 <head>
     <meta charset="UTF-8">
-    <title> Coffee Souls </title>
-    <!--CSS para diseño de paginas-->
+    <title>Coffee Souls</title>
+    <!-- CSS para el diseño de páginas -->
     <link rel="stylesheet" href="CSS/Style-Sidebar.css">
     <link rel="stylesheet" href="CSS/Style-FomrEdit.css">
     <!-- Boxiocns CDN Link -->
@@ -41,7 +41,7 @@
                 <span class="link_name">Dashboard</span>
             </a>
             <ul class="sub-menu blank">
-                <li><a class="link_name" href="Dashboard.jsp">Dashboard</a></li>
+                <li><a class "link_name" href="Dashboard.jsp">Dashboard</a></li>
             </ul>
         </li>
         <li>
@@ -144,45 +144,43 @@
 <section class="home-section">
     <div class="home-content">
         <i class='bx bx-menu' ></i>
-        <span class="text">Edit Worker</span>
+        <span class="text">Edit Sale</span>
     </div>
     <div>
-        <h2>Edit Worker</h2>
-        <%
-            // Obtener el ID del trabajador desde la solicitud
-            int idTrabajador = Integer.parseInt(request.getParameter("idEmp"));
+        <h2>Edit Sale
+                <%
+            // Obtener el ID de la venta desde la solicitud
+            int id_venta = Integer.parseInt(request.getParameter("id_venta"));
 
-            // Crear una instancia de TrabajadorDAO para obtener los detalles del trabajador
-            TrabajadorDAO trabajadorDAO = new TrabajadorDAO();
-            Trabajador trabajador = trabajadorDAO.obtenerTrabajadorPorID(idTrabajador);
+            // Crear una instancia de VentaDAO para obtener los detalles de la venta
+            VentaDAO ventaDAO = new VentaDAO();
+            Venta venta = ventaDAO.obtenerVentaPorID(id_venta);
 
-            // Verificar si el trabajador existe antes de mostrar los campos de edición
-            if (trabajador != null) {
+            // Verificar si la venta existe antes de mostrar los campos de edición
+            if (venta != null) {
         %>
-        <form method="post" action="trabajador?action=editar">
-            <input type="hidden" name="idEmp" value="<%= trabajador.getIdEmp() %>">
+            <form method="post" action="venta?action=editar">
+                <input type="hidden" name="id_venta" value="<%= venta.getIdVenta() %>">
+
+                <label for="fecha_venta">Fecha de la Venta:</label>
+                <input type="text" id="fecha_venta" name="nueva_fecha_venta" value="<%= venta.getFechaVenta() %>" required><br>
+
+                <label for="monto">Monto:</label>
+                <input type="text" id="monto" name="nuevo_nom_cliente" value="<%= venta.getMonto() %>" required><br>
+
+                <label for="descripcion">Monto:</label>
+                <input type="text" id="descripcion" name="nueva_descripcion" value="<%= venta.getDescripcion() %>" required><br>
+
+                <label for="nom_cliente">Nombre del Cliente:</label>
+                <input type="text" id="nom_cliente" name="nuevo_nom_cliente" value="<%= venta.getNomCliente() %>" required><br>
 
 
-            <label for="nomEmp">Nombre del Trabajador:</label>
-            <input type="text" id="nomEmp" name="nuevoNomInvent" value="<%= trabajador.getNomEmp() %>" required><br>
 
-            <label for="apeEmp">Apellido del Trabajador:</label>
-            <input type="text" id="apeEmp" name="nuevaCantidad" value="<%= trabajador.getApeEmp() %>" required><br>
-
-            <label for="edadEmp">Edad del Trabajador:</label>
-            <input type="text" id="edadEmp" name="nuevaEdadEmp" value="<%= trabajador.getEdadEmp() %>" required><br>
-
-            <label for="dniEmp">DNI del Trabajador:</label>
-            <input type="text" id="dniEmp" name="nuevoDniEmp" value="<%= trabajador.getDniEmp() %>" required><br>
-
-            <label for="email">Email del Trabajador:</label>
-            <input type="email" id="email" name="nuevoEmail" value="<%= trabajador.getEmail() %>" required><br>
-
-            <input type="submit" value="Guardar Cambios">
-        </form>
-        <%
+                <input type="submit" value="Guardar Cambios">
+            </form>
+                <%
             } else {
-                out.println("El trabajador no existe o no se pudo cargar.");
+                out.println("La venta no existe o no se pudo cargar.");
             }
         %>
     </div>

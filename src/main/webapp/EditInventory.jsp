@@ -1,12 +1,12 @@
 <%--
   Created by IntelliJ IDEA.
   User: Jeazoal
-  Date: 10/10/2023
-  Time: 02:32
+  Date: 11/10/2023
+  Time: 14:52
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="com.coffeesouls.Models.Trabajador, com.coffeesouls.Models.TrabajadorDAO" %>
+<%@ page import="com.coffeesouls.Models.Inventario, com.coffeesouls.Models.InventarioDAO" %>
 <!DOCTYPE html>
 <html lang="es" dir="ltr">
 <head>
@@ -144,45 +144,42 @@
 <section class="home-section">
     <div class="home-content">
         <i class='bx bx-menu' ></i>
-        <span class="text">Edit Worker</span>
+        <span class="text">Edit Inventory Item</span>
     </div>
     <div>
-        <h2>Edit Worker</h2>
+        <h2>Edit Inventory Item</h2>
         <%
-            // Obtener el ID del trabajador desde la solicitud
-            int idTrabajador = Integer.parseInt(request.getParameter("idEmp"));
+            // Obtener el ID del elemento de inventario desde la solicitud
+            int codInvent = Integer.parseInt(request.getParameter("cod_invent"));
 
-            // Crear una instancia de TrabajadorDAO para obtener los detalles del trabajador
-            TrabajadorDAO trabajadorDAO = new TrabajadorDAO();
-            Trabajador trabajador = trabajadorDAO.obtenerTrabajadorPorID(idTrabajador);
+            // Crear una instancia de InventarioDAO para obtener los detalles del elemento de inventario
+            InventarioDAO inventarioDAO = new InventarioDAO();
+            Inventario inventario = inventarioDAO.obtenerInventarioPorCodigo(codInvent);
 
-            // Verificar si el trabajador existe antes de mostrar los campos de edición
-            if (trabajador != null) {
+            // Verificar si el elemento de inventario existe antes de mostrar los campos de edición
+            if (inventario != null) {
         %>
-        <form method="post" action="trabajador?action=editar">
-            <input type="hidden" name="idEmp" value="<%= trabajador.getIdEmp() %>">
+        <form method="post" action="inventario?action=editar">
+            <input type="hidden" name="cod_invet" value="<%= inventario.getCod_invet() %>">
+
+            <label for="nom_invent">Nombre del Producto:</label>
+            <input type="text" id="nom_invent" name="nuevoNomInvent" value="<%= inventario.getNom_invent() %>" required><br>
+
+            <label for="tipo">Tipo:</label>
+            <input type="text" id="tipo" name="nuevoTipo" value="<%= inventario.getTipo() %>" required><br>
+
+            <label for="cantidad">Cantidad:</label>
+            <input type="text" id="cantidad" name="nuevaCantidad" value="<%= inventario.getCantidad() %>" required><br>
 
 
-            <label for="nomEmp">Nombre del Trabajador:</label>
-            <input type="text" id="nomEmp" name="nuevoNomInvent" value="<%= trabajador.getNomEmp() %>" required><br>
-
-            <label for="apeEmp">Apellido del Trabajador:</label>
-            <input type="text" id="apeEmp" name="nuevaCantidad" value="<%= trabajador.getApeEmp() %>" required><br>
-
-            <label for="edadEmp">Edad del Trabajador:</label>
-            <input type="text" id="edadEmp" name="nuevaEdadEmp" value="<%= trabajador.getEdadEmp() %>" required><br>
-
-            <label for="dniEmp">DNI del Trabajador:</label>
-            <input type="text" id="dniEmp" name="nuevoDniEmp" value="<%= trabajador.getDniEmp() %>" required><br>
-
-            <label for="email">Email del Trabajador:</label>
-            <input type="email" id="email" name="nuevoEmail" value="<%= trabajador.getEmail() %>" required><br>
+            <label for="proveedor">Proveedor:</label>
+            <input type="text" id="proveedor" name="nuevoProveedor" value="<%= inventario.getProveedor() %>" required><br>
 
             <input type="submit" value="Guardar Cambios">
         </form>
         <%
             } else {
-                out.println("El trabajador no existe o no se pudo cargar.");
+                out.println("El elemento de inventario no existe o no se pudo cargar.");
             }
         %>
     </div>

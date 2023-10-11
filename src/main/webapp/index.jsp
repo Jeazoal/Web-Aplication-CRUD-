@@ -92,7 +92,7 @@
             </div>
             <ul class="sub-menu">
                 <li><a class="link_name" href="#">Sales</a></li>
-                <li><a href="#">Manage Sales</a></li>
+                <li><a href="ManageVentas.jsp">Manage Sales</a></li>
                 <li><a href="#">Report for Sales</a></li>
             </ul>
         </li>
