@@ -66,18 +66,6 @@ public class ProductoServlet extends HttpServlet {
             request.setAttribute("productosEncontrados", productosEncontrados);
 
             request.getRequestDispatcher("ResultProductos.jsp").forward(request, response);
-        }else if ("eliminarSeleccionados".equals(action)) {
-            String[] idsSeleccionados = request.getParameterValues("productosSeleccionados");
-
-            if (idsSeleccionados != null && idsSeleccionados.length > 0) {
-                List<Integer> idsProductos = new ArrayList<>();
-                for (String id : idsSeleccionados) {
-                    idsProductos.add(Integer.parseInt(id));
-                }
-
-                ProductoDAO productoDAO = new ProductoDAO();
-                productoDAO.eliminarProductosSeleccionados(idsProductos);
-            }
         }
         // Redirigir a la página de productos usando GET
         response.sendRedirect("ManageProducto.jsp");

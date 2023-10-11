@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 public class Conexion {
     // Información de conexión
-    private static final String jdbcUrl = "jdbc:sqlserver://DESKTOP-FT5EC3K:1433;databaseName=CoffeeSouls;encrypt=false";
+    private static final String jdbcUrl = "jdbc:sqlserver://DESKTOP-FT5EC3K:1433;databaseName=CoffeeSouls_DATA;encrypt=false";
     private static final String usuario = "sa";
     private static final String contraseña = "1234";
 

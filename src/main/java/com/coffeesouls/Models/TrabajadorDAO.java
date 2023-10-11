@@ -123,31 +123,6 @@ public class TrabajadorDAO {
         }
     }
 
-    public void eliminarTrabajadoresSeleccionados(List<Integer> ids) {
-        try {
-            // Crear una consulta SQL dinámica para eliminar varios trabajadores por ID
-            StringBuilder sql = new StringBuilder("DELETE FROM trabajadores WHERE id_emp IN (");
-            for (int i = 0; i < ids.size(); i++) {
-                sql.append("?");
-                if (i < ids.size() - 1) {
-                    sql.append(", ");
-                }
-            }
-            sql.append(")");
-
-            PreparedStatement statement = connection.prepareStatement(sql.toString());
-
-            // Establecer los IDs de los trabajadores a eliminar en la consulta
-            for (int i = 0; i < ids.size(); i++) {
-                statement.setInt(i + 1, ids.get(i));
-            }
-
-            statement.executeUpdate();
-        } catch (SQLException e) {
-            System.err.println("Error al eliminar los trabajadores seleccionados: " + e.getMessage());
-        }
-    }
-
     public List<Trabajador> buscarTrabajadores(String criterio, String tipoBusqueda) {
         List<Trabajador> trabajadoresEncontrados = new ArrayList<>();
 
@@ -179,5 +154,6 @@ public class TrabajadorDAO {
 
         return trabajadoresEncontrados;
     }
+
 
 }

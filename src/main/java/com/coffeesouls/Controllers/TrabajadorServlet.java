@@ -73,24 +73,9 @@ public class TrabajadorServlet extends HttpServlet {
             // Guardar la lista de trabajadores en el objeto de solicitud para mostrar en la página de resultados
             request.setAttribute("trabajadoresEncontrados", trabajadoresEncontrados);
 
-
-            request.getRequestDispatcher("ResultTrabajador  .jsp").forward(request, response);
-        } else if ("eliminarSeleccionados".equals(action)) {
-            String[] idsSeleccionados = request.getParameterValues("trabajadoresSeleccionados");
-
-            if (idsSeleccionados != null && idsSeleccionados.length > 0) {
-                // Crear una lista de IDs de trabajadores a eliminar
-                List<Integer> idsTrabajadores = new ArrayList<>();
-                for (String id : idsSeleccionados) {
-                    idsTrabajadores.add(Integer.parseInt(id));
-                }
-
-                // Crear una instancia de TrabajadorDAO y eliminar los trabajadores seleccionados
-                TrabajadorDAO trabajadorDAO = new TrabajadorDAO();
-                trabajadorDAO.eliminarTrabajadoresSeleccionados(idsTrabajadores);
-            }
+            // Redirigir a la página de resultados de búsqueda (por ejemplo, "ResultadosBusqueda.jsp")
+            request.getRequestDispatcher("ResultTrabajador.jsp").forward(request, response);
         }
-
         // Redirigir a la página de trabajadores usando GET
         response.sendRedirect("ManageTrabajador.jsp");
     }

@@ -5,8 +5,12 @@
     --Table-second-color: #505a60;
     --user-color: #605d5d;
     --text-color: #eef3f1;
-    --font-color: #F6F5FF;
+    --font-color: #f6f5ff;
+    --font: rgba(250, 250, 250, 0.92);
+}
 
+body{
+    background: var(--font);
 }
 
 /* FORMULARIO CREATE */

@@ -82,7 +82,7 @@
             </div>
             <ul class="sub-menu">
                 <li><a class="link_name" href="#">Category</a></li>
-                <li><a href="#">Manage Category</a></li>
+                <li><a href="ManageCategoria.jsp">Manage Category</a></li>
                 <li><a href="#">Report for Category</a></li>
             </ul>
         </li>
@@ -141,6 +141,7 @@
         </li>
     </ul>
 </div>
+
 <section class="home-section">
     <div class="home-content">
         <i class='bx bx-menu' ></i>

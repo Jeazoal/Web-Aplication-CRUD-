@@ -81,37 +81,6 @@ public class ProductoDAO {
         return productosEncontrados;
     }
 
-    public List<Trabajador> buscarTrabajadores(String criterio, String tipoBusqueda) {
-        List<Trabajador> trabajadoresEncontrados = new ArrayList<>();
-
-        try {
-            String sql = "{CALL BuscarTrabajadores(?, ?)}";
-
-            // Preparar la llamada al procedimiento almacenado
-            CallableStatement statement = connection.prepareCall(sql);
-            statement.setString(1, criterio);
-            statement.setString(2, tipoBusqueda);
-
-            // Ejecutar el procedimiento almacenado
-            ResultSet resultSet = statement.executeQuery();
-
-            while (resultSet.next()) {
-                int idEmp = resultSet.getInt("id_emp");
-                String nomEmp = resultSet.getString("nom_emp");
-                String apeEmp = resultSet.getString("ape_emp");
-                int edadEmp = resultSet.getInt("edad_emp");
-                String dniEmp = resultSet.getString("dni_emp");
-                String email = resultSet.getString("email");
-
-                Trabajador trabajador = new Trabajador(idEmp, nomEmp, apeEmp, edadEmp, dniEmp, email);
-                trabajadoresEncontrados.add(trabajador);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return trabajadoresEncontrados;
-    }
 
     public void agregarProducto(String nombre, double precio) {
         try {
@@ -175,30 +144,6 @@ public class ProductoDAO {
         }
     }
 
-    public void eliminarProductosSeleccionados(List<Integer> ids) {
-        try {
-            // Crear una consulta SQL dinámica para eliminar varios productos por ID
-            StringBuilder sql = new StringBuilder("DELETE FROM productos WHERE id IN (");
-            for (int i = 0; i < ids.size(); i++) {
-                sql.append("?");
-                if (i < ids.size() - 1) {
-                    sql.append(", ");
-                }
-            }
-            sql.append(")");
-
-            PreparedStatement statement = connection.prepareStatement(sql.toString());
-
-            // Establecer los IDs de los productos a eliminar en la consulta
-            for (int i = 0; i < ids.size(); i++) {
-                statement.setInt(i + 1, ids.get(i));
-            }
-
-            statement.executeUpdate();
-        } catch (SQLException e) {
-            System.err.println("Error al eliminar los productos seleccionados: " + e.getMessage());
-        }
-    }
 
     public List<Producto> obtenerTresProductosMasCaros() {
         List<Producto> productosCaros = new ArrayList<>();
@@ -222,6 +167,7 @@ public class ProductoDAO {
 
         return productosCaros;
     }
+
 
 
 }

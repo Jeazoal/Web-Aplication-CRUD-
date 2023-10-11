@@ -6,7 +6,7 @@
     --second-color: #3b3a3a;
     --user-color: #605d5d;
     --text-color: #eef3f1;
-    --font-color: #F6F5FF;
+    --font-color: #FAFAFA;
 }
 
 *{
@@ -260,6 +260,7 @@
     height: 60px;
     display: flex;
     align-items: center;
+    background: var(--font);
 }
 .home-section .home-content .bx-menu,
 .home-section .home-content .text{
@@ -269,6 +270,7 @@
 .home-section .home-content .bx-menu{
     margin: 0 15px;
     cursor: pointer;
+    background: var(--font);
 }
 .home-section .home-content .text{
     font-size: 26px;

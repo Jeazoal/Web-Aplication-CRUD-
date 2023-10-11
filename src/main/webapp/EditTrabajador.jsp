@@ -13,8 +13,8 @@
     <meta charset="UTF-8">
     <title> Coffee Souls </title>
     <!--CSS para diseño de paginas-->
-    <link rel="stylesheet" href="Styles/Style-Sidebar.css">
-    <link rel="stylesheet" href="Styles/Style-FomrEdit.css">
+    <link rel="stylesheet" href="CSS/Style-Sidebar.css">
+    <link rel="stylesheet" href="CSS/Style-FomrEdit.css">
     <!-- Boxiocns CDN Link -->
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
